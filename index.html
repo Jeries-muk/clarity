@@ -115,7 +115,7 @@ input[type="number"], input[type="date"], input[type="text"], select {
 .btn {
     background-color: #0d47a1; /* Default button color */
     color: #fff;
-    padding: 12px 24px; /* Increased padding for a more prominent button */
+    padding: 12px 24px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -125,7 +125,7 @@ input[type="number"], input[type="date"], input[type="text"], select {
     flex: 1;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
-    justify-content: space-between; /* Places text and icon on opposite ends */
+    justify-content: space-between; /* Places text and icon on opposite sides */
     align-items: center;
 }
 .btn i {
@@ -150,7 +150,7 @@ input[type="number"], input[type="date"], input[type="text"], select {
     margin-bottom: 10px;
     padding: 10px;
     background-color: #e3f2fd;
-    border-radius: 8px; /* Rounded corners for a modern look */
+    border-radius: 8px;
     border-left: 4px solid #0d47a1;
     transition: background-color 0.3s, transform 0.3s;
     
@@ -198,7 +198,7 @@ input[type="number"], input[type="date"], input[type="text"], select {
     width: 100%;
     padding: 8px;
     border: 1px solid #90caf9;
-    border-radius: 8px; /* Rounded corners */
+    border-radius: 8px;
     font-size: 14px;
     transition: border-color 0.3s;
 }
@@ -212,7 +212,7 @@ input[type="number"], input[type="date"], input[type="text"], select {
     position: fixed;
     bottom: 10px;
     right: 10px;
-    font-size: 12px; /* Set font size to 12px */
+    font-size: 12px;
     font-weight: bold;
     color: #0d47a1;
     text-decoration: underline;
@@ -279,21 +279,21 @@ header, footer, .container, .input-field, .button, .debt-box, .history, .result{
 /* Dark Mode Toggle Box */
 #darkModeToggle {
     position: fixed; /* Fixed position to stay visible on all screens */
-    top: 5px; /* Adjusted to be consistent across screen sizes */
-    left: 5px; /* Adjusted to be consistent across screen sizes */
+    top: 5px;
+    left: 5px;
     width: auto;
     padding: 10px;
-    background-color: #e3f2fd; /* Light bg for the toggle box in light mode */
-    border: 1px solid #0d47a1; /* Border color for the box */
-    border-radius: 12px; /* More rounded corners for a modern feel */
+    background-color: #e3f2fd;
+    border: 1px solid #0d47a1;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     gap: 10px;
     cursor: pointer;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
-    color: #0d47a1; /* Dark color for text in light mode */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    color: #0d47a1;
     transition: background-color 0.3s, box-shadow 0.3s;
-    z-index: 1000; /* Ensures it stays on top of other elements */
+    z-index: 1000;
 }
 
 #darkModeToggle .label {
@@ -302,20 +302,20 @@ header, footer, .container, .input-field, .button, .debt-box, .history, .result{
 }
 
 #darkModeToggle .toggle-button {
-    width: 60px; /* Increased width for the toggle slider */
-    height: 30px; /* Increased height for the toggle slider */
-    background-color: #0da119; /* bg for the toggle in light mode */
-    border-radius: 20px; /* Fully rounded slider */
+    width: 60px;
+    height: 30px;
+    background-color: #0da119;
+    border-radius: 20px;
     position: relative;
     transition: background-color 0.3s;
 }
 
 #darkModeToggle .toggle-button::before {
     content: '';
-    width: 28px; /* Increased width for the knob */
-    height: 28px; /* Increased height for the knob */
-    border-radius: 50%; /* Fully rounded knob */
-    background-color: #fff; /* White color for the knob */
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #fff;
     position: absolute;
     top: 1px;
     left: 1px;
@@ -341,7 +341,7 @@ header, footer, .container, .input-field, .button, .debt-box, .history, .result{
 @media (max-width: 768px) {
     .wrapper {
         flex-direction: column;
-        align-items: stretch; /* Stretch to fill available width */
+        align-items: stretch;
     }
 
     .container, .history {
@@ -351,7 +351,7 @@ header, footer, .container, .input-field, .button, .debt-box, .history, .result{
 
     #darkModeToggle {
         width: auto; /* Adjust the width of the toggle button container */
-        top: 10px; /* Keep at the top for smaller screens */
+        top: 10px;
         left: 10px;
     }
 }
@@ -359,26 +359,26 @@ header, footer, .container, .input-field, .button, .debt-box, .history, .result{
 /* Mobile Devices (Up to 768px wide) */
 @media (max-width: 768px) {
     #darkModeToggle {
-        top: 10px; /* Adjust for mobile */
+        top: 10px;
         left: 10px;
-        width: 140px; /* Smaller width for smaller screens */
-        padding: 8px; /* Smaller padding for mobile */
-        font-size: 14px; /* Adjust font size for better readability */
+        width: 140px;
+        padding: 8px;
+        font-size: 14px;
     }
 
     .input-field {
-        width: 100%; /* Make input fields full width on mobile */
-        margin-bottom: 10px; /* Add spacing between elements */
+        width: 100%;
+        margin-bottom: 10px;
     }
 
     .button {
-        width: 100%; /* Full-width buttons on mobile */
+        width: 100%;
         padding: 12px;
     }
 
-    /* Adjust Container Layout */
+    
     .container {
-        display: block; /* Stack elements vertically */
+        display: block;
         padding: 10px;
     }
 }
@@ -405,19 +405,19 @@ header, footer, .container, .input-field, .button, .debt-box, .history, .result{
 #debtInputs {
     display: flex;
     gap: 30px; /* Space between each box */
-    flex-wrap: wrap; /* Wrap to new lines if needed */
-    margin: 0; /* Space above and below the boxes */
+    flex-wrap: wrap;
+    margin: 0;
     margin-right: 10px;
 }
 
 /* Individual Debt Boxes */
 .debt-box {
     background-color: #fff; /* Default background color */
-    border-radius: 8px; /* Rounded corners */
-    padding: 8px; /* Padding inside the box */
-    flex: 1; /* Boxes grow to fill available space */
-    box-shadow: none; /* Remove box shadow */
-    border: none; /* Remove border */
+    border-radius: 8px;
+    padding: 8px;
+    flex: 1;
+    box-shadow: none;
+    border: none;
 }
 
 
@@ -432,7 +432,7 @@ header, footer, .container, .input-field, .button, .debt-box, .history, .result{
 }
 
 .dark-mode .debt-input-group {
-    margin: 0; /* Remove margin for consistency */
+    margin: 0;
 }
 
 /* Wrapper for inputs with signs like '$' */
@@ -484,9 +484,9 @@ header, footer, .container, .input-field, .button, .debt-box, .history, .result{
 /* Float label upwards when the input is active or focused */
 .input-with-sign input:focus + label,
 .input-with-sign input:not(:placeholder-shown) + label {
-    top: -20px; /* Float upwards */
-    font-size: 0.9em; /* Shrink font size */
-    color: #0d47a1; /* Active color for label */
+    top: -20px;
+    font-size: 0.9em;
+    color: #0d47a1;
 }
 
 /* Styling for the dollar sign, always visible */
@@ -576,8 +576,8 @@ header, footer, .container, .input-field, .button, .debt-box, .history, .result{
 .client-draft-container {
     display: flex;
     justify-content: space-between;
-    gap: 20px; /* Adjust the gap as needed */
-    flex-wrap: wrap; /* Allows wrapping if necessary */
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 #extensionFields  {
@@ -587,8 +587,8 @@ header, footer, .container, .input-field, .button, .debt-box, .history, .result{
 
 .client-draft-box {
     flex: 1;
-    min-width: 200px; /* Adjust based on the desired minimum width */
-    max-width: calc(50% - 10px); /* Adjust to fit the container and gap */
+    min-width: 200px;
+    max-width: calc(50% - 10px);
     box-sizing: border-box;
 }
 
@@ -719,8 +719,8 @@ header, footer, .container, .input-field, .button, .debt-box, .history, .result{
 .fee-sections {
     display: flex;
     justify-content: space-between; /* Adjust spacing between sections */
-    margin-bottom: 10px; /* Space below the fee sections */
-    margin-top: 10px; /* Space below the fee sections */
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .fee-section {
