@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payoff & Extension Calculator</title>
+    <link rel="icon" href="C:\Users\iGeeK\Desktop\logo-dark.png" type="png"> <!-- Title tab icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e3f2fd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden; 
+    transition: background-color 0.5s ease, color 0.5s ease;
+    background-color: #d8edfd;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 304 304' width='304' height='304'%3E%3Cpath fill='%230d47a1' fill-opacity='0.26' d='M44.1 224a5 5 0 1 1 0 2H0v-2h44.1zm160 48a5 5 0 1 1 0 2H82v-2h122.1zm57.8-46a5 5 0 1 1 0-2H304v2h-42.1zm0 16a5 5 0 1 1 0-2H304v2h-42.1zm6.2-114a5 5 0 1 1 0 2h-86.2a5 5 0 1 1 0-2h86.2zm-256-48a5 5 0 1 1 0 2H0v-2h12.1zm185.8 34a5 5 0 1 1 0-2h86.2a5 5 0 1 1 0 2h-86.2zM258 12.1a5 5 0 1 1-2 0V0h2v12.1zm-64 208a5 5 0 1 1-2 0v-54.2a5 5 0 1 1 2 0v54.2zm48-198.2V80h62v2h-64V21.9a5 5 0 1 1 2 0zm16 16V64h46v2h-48V37.9a5 5 0 1 1 2 0zm-128 96V208h16v12.1a5 5 0 1 1-2 0V210h-16v-76.1a5 5 0 1 1 2 0zm-5.9-21.9a5 5 0 1 1 0 2H114v48H85.9a5 5 0 1 1 0-2H112v-48h12.1zm-6.2 130a5 5 0 1 1 0-2H176v-74.1a5 5 0 1 1 2 0V242h-60.1zm-16-64a5 5 0 1 1 0-2H114v48h10.1a5 5 0 1 1 0 2H112v-48h-10.1zM66 284.1a5 5 0 1 1-2 0V274H50v30h-2v-32h18v12.1zM236.1 176a5 5 0 1 1 0 2H226v94h48v32h-2v-30h-48v-98h12.1zm25.8-30a5 5 0 1 1 0-2H274v44.1a5 5 0 1 1-2 0V146h-10.1zm-64 96a5 5 0 1 1 0-2H208v-80h16v-14h-42.1a5 5 0 1 1 0-2H226v18h-16v80h-12.1zm86.2-210a5 5 0 1 1 0 2H272V0h2v32h10.1zM98 101.9V146H53.9a5 5 0 1 1 0-2H96v-42.1a5 5 0 1 1 2 0zM53.9 34a5 5 0 1 1 0-2H80V0h2v34H53.9zm60.1 3.9V66H82v64H69.9a5 5 0 1 1 0-2H80V64h32V37.9a5 5 0 1 1 2 0zM101.9 82a5 5 0 1 1 0-2H128V37.9a5 5 0 1 1 2 0V82h-28.1zm16-64a5 5 0 1 1 0-2H146v44.1a5 5 0 1 1-2 0V18h-26.1zm102.2 270a5 5 0 1 1 0 2H98v14h-2v-16h124.1zM242 149.9V160h16v34h-16v62h48v48h-2v-46h-48v-66h16v-30h-16v-12.1a5 5 0 1 1 2 0zM53.9 18a5 5 0 1 1 0-2H64V2H48V0h18v18H53.9zm112 32a5 5 0 1 1 0-2H192V0h50v2h-48v48h-28.1zm-48-48a5 5 0 0 1-9.8-2h2.07a3 3 0 1 0 5.66 0H178v34h-18V21.9a5 5 0 1 1 2 0V32h14V2h-58.1zm0 96a5 5 0 1 1 0-2H137l32-32h39V21.9a5 5 0 1 1 2 0V66h-40.17l-32 32H117.9zm28.1 90.1a5 5 0 1 1-2 0v-76.51L175.59 80H224V21.9a5 5 0 1 1 2 0V82h-49.59L146 112.41v75.69zm16 32a5 5 0 1 1-2 0v-99.51L184.59 96H300.1a5 5 0 0 1 3.9-3.9v2.07a3 3 0 0 0 0 5.66v2.07a5 5 0 0 1-3.9-3.9H185.41L162 121.41v98.69zm-144-64a5 5 0 1 1-2 0v-3.51l48-48V48h32V0h2v50H66v55.41l-48 48v2.69zM50 53.9v43.51l-48 48V208h26.1a5 5 0 1 1 0 2H0v-65.41l48-48V53.9a5 5 0 1 1 2 0zm-16 16V89.41l-34 34v-2.82l32-32V69.9a5 5 0 1 1 2 0zM12.1 32a5 5 0 1 1 0 2H9.41L0 43.41V40.6L8.59 32h3.51zm265.8 18a5 5 0 1 1 0-2h18.69l7.41-7.41v2.82L297.41 50H277.9zm-16 160a5 5 0 1 1 0-2H288v-71.41l16-16v2.82l-14 14V210h-28.1zm-208 32a5 5 0 1 1 0-2H64v-22.59L40.59 194H21.9a5 5 0 1 1 0-2H41.41L66 216.59V242H53.9zm150.2 14a5 5 0 1 1 0 2H96v-56.6L56.6 162H37.9a5 5 0 1 1 0-2h19.5L98 200.6V256h106.1zm-150.2 2a5 5 0 1 1 0-2H80v-46.59L48.59 178H21.9a5 5 0 1 1 0-2H49.41L82 208.59V258H53.9zM34 39.8v1.61L9.41 66H0v-2h8.59L32 40.59V0h2v39.8zM2 300.1a5 5 0 0 1 3.9 3.9H3.83A3 3 0 0 0 0 302.17V256h18v48h-2v-46H2v42.1zM34 241v63h-2v-62H0v-2h34v1zM17 18H0v-2h16V0h2v18h-1zm273-2h14v2h-16V0h2v16zm-32 273v15h-2v-14h-14v14h-2v-16h18v1zM0 92.1A5.02 5.02 0 0 1 6 97a5 5 0 0 1-6 4.9v-2.07a3 3 0 1 0 0-5.66V92.1zM80 272h2v32h-2v-32zm37.9 32h-2.07a3 3 0 0 0-5.66 0h-2.07a5 5 0 0 1 9.8 0zM5.9 0A5.02 5.02 0 0 1 0 5.9V3.83A3 3 0 0 0 3.83 0H5.9zm294.2 0h2.07A3 3 0 0 0 304 3.83V5.9a5 5 0 0 1-3.9-5.9zm3.9 300.1v2.07a3 3 0 0 0-1.83 1.83h-2.07a5 5 0 0 1 3.9-3.9zM97 100a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-48 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 96a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-144a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM49 36a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM33 68a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 240a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm80-176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm112 176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 180a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 84a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'%3E%3C/path%3E%3C/svg%3E");
+
+
+}
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    padding: 20px;
+    position: relative;
+}
+
+.container, .history {
+    background: #fff;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+
+}
+
+.container {
+    flex: 3;
+    min-width: 300px;
+}
+
+.history {
+    flex: 1;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #0d47a1;
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #0d47a1;
+    font-weight: bold;
+}
+
+
+input[type="number"], input[type="date"], input[type="text"], select {
+    width: calc(100% - 16px);
+    padding: 10px;
+    margin-bottom: 14px;
+    border: 1px solid #90caf9;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.result {
+    background-color: #bbdefb;
+    padding: 12px;
+    border-radius: 4px;
+    margin-top: 15px;
+    border-left: 5px solid #0d47a1;
+    font-size: 16px;
+    color: #0d47a1;
+}
+
+.trash-icon, .calculator-icon {
+    margin-left: 10px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    font-size: 18px; /* Icon size */
+    vertical-align: middle; 
+    color: #ffffff; 
+}
+
+/* Icon Animation on Hover */
+.btn:hover .trash-icon, .btn:hover .calculator-icon {
+    transform: scale(1.3) rotate(15deg);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
+}
+
+
+.button-group {
+    display: flex;
+    gap: 10px; /* space between buttons */
+    margin-top: 10px; /* Space above the button group */
+}
+
+/* Base Button Styles */
+.btn {
+    background-color: #0d47a1; /* Default button color */
+    color: #fff;
+    padding: 12px 24px; /* Increased padding for a more prominent button */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.5s, transform 0.5s;
+    flex: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between; /* Places text and icon on opposite ends */
+    align-items: center;
+}
+.btn i {
+    flex-shrink: 0;
+}
+.btn:hover {
+    background-color: #0a369d;
+    transform: scale(1.05);
+}
+
+.btn.reset {
+    background-color: #d32f2f;
+}
+
+.btn.reset:hover {
+    background-color: #b71c1c;
+}
+
+/* History Item Styles */
+.history-item {
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #e3f2fd;
+    border-radius: 8px; /* Rounded corners for a modern look */
+    border-left: 4px solid #0d47a1;
+    transition: background-color 0.3s, transform 0.3s;
+    
+}
+.history-item {
+    animation: fadeIn 0.8s ease;
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.history-item:hover {
+    background-color: #b3e5fc;
+    transform: scale(1.02);
+}
+
+/* Debt Inputs Styles */
+#debtInputs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.debt-input-group {
+    flex: 1 1 calc(33% - 20px);
+    min-width: 200px;
+}
+
+.debt-input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #0d47a1;
+}
+
+.debt-input-group input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #90caf9;
+    border-radius: 8px; /* Rounded corners */
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.debt-input-group input[type="number"]:focus {
+    border-color: #0d47a1;
+}
+
+/* Created By style */
+.created-by {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 12px; /* Set font size to 12px */
+    font-weight: bold;
+    color: #0d47a1;
+    text-decoration: underline;
+    z-index: 1000;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.created-by:hover {
+    color: #ff4081; /* Changes the color on hover */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Adds a subtle shadow on hover */
+}
+
+
+/* Dark mode */
+header, footer, .container, .input-field, .button, .debt-box, .history, .result{
+    transition: background-color 0.5s ease, color 0.5s ease; /* Smooth transition for other elements */
+}
+.dark-mode {
+    background-color: #121212; /* Dark background for the whole screen */
+    color: #e3f2fd; /* Light text color */
+}
+
+.dark-mode body {
+    background-color: #121212;
+    color: #e3f2fd;
+}
+
+
+.dark-mode .container, .dark-mode .history {
+    background: #1e1e1e;
+    color: #e3f2fd;
+}
+
+.dark-mode label {
+    color: #bbdefb; /* Light blue color for labels to match button text color */
+}
+
+.dark-mode .result {
+    background-color: #312f2f;
+    border-left: 5px solid #bbdefb;
+    color: #bbdefb;
+}
+
+.dark-mode .btn {
+    background-color: #bbdefb;
+    color: #0d47a1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .btn:hover {
+    background-color: #90caf9;
+}
+
+.dark-mode .history-item {
+    background-color: #312f2f; /* History item bg color */
+    border-left: 4px solid #bbdefb;
+}
+
+.dark-mode .history-item:hover {
+    background-color: #333;
+}
+
+
+/* Dark Mode Toggle Box */
+#darkModeToggle {
+    position: fixed; /* Fixed position to stay visible on all screens */
+    top: 5px; /* Adjusted to be consistent across screen sizes */
+    left: 5px; /* Adjusted to be consistent across screen sizes */
+    width: auto;
+    padding: 10px;
+    background-color: #e3f2fd; /* Light bg for the toggle box in light mode */
+    border: 1px solid #0d47a1; /* Border color for the box */
+    border-radius: 12px; /* More rounded corners for a modern feel */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+    color: #0d47a1; /* Dark color for text in light mode */
+    transition: background-color 0.3s, box-shadow 0.3s;
+    z-index: 1000; /* Ensures it stays on top of other elements */
+}
+
+#darkModeToggle .label {
+    font-size: 14px;
+    color: #0d47a1; /* Dark color for text in light mode */
+}
+
+#darkModeToggle .toggle-button {
+    width: 60px; /* Increased width for the toggle slider */
+    height: 30px; /* Increased height for the toggle slider */
+    background-color: #0da119; /* bg for the toggle in light mode */
+    border-radius: 20px; /* Fully rounded slider */
+    position: relative;
+    transition: background-color 0.3s;
+}
+
+#darkModeToggle .toggle-button::before {
+    content: '';
+    width: 28px; /* Increased width for the knob */
+    height: 28px; /* Increased height for the knob */
+    border-radius: 50%; /* Fully rounded knob */
+    background-color: #fff; /* White color for the knob */
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    transition: transform 0.5s, background-color 0.5s;
+}
+
+/* Dark Mode Toggle Button Active State */
+.dark-mode #darkModeToggle {
+    background-color: #1e1e1e; /* Dark background when dark mode is active */
+    color: #e0e0e0; /* Light color for text when dark mode is active */
+}
+
+.dark-mode #darkModeToggle .toggle-button {
+    background-color: #bbdefb; /* Light background for the toggle in dark mode */
+}
+
+.dark-mode #darkModeToggle .toggle-button::before {
+    transform: translateX(30px); /* Move toggle knob when active */
+    background-color: #0d47a1; /* Dark color for knob in dark mode */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
+        align-items: stretch; /* Stretch to fill available width */
+    }
+
+    .container, .history {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    #darkModeToggle {
+        width: auto; /* Adjust the width of the toggle button container */
+        top: 10px; /* Keep at the top for smaller screens */
+        left: 10px;
+    }
+}
+
+/* Mobile Devices (Up to 768px wide) */
+@media (max-width: 768px) {
+    #darkModeToggle {
+        top: 10px; /* Adjust for mobile */
+        left: 10px;
+        width: 140px; /* Smaller width for smaller screens */
+        padding: 8px; /* Smaller padding for mobile */
+        font-size: 14px; /* Adjust font size for better readability */
+    }
+
+    .input-field {
+        width: 100%; /* Make input fields full width on mobile */
+        margin-bottom: 10px; /* Add spacing between elements */
+    }
+
+    .button {
+        width: 100%; /* Full-width buttons on mobile */
+        padding: 12px;
+    }
+
+    /* Adjust Container Layout */
+    .container {
+        display: block; /* Stack elements vertically */
+        padding: 10px;
+    }
+}
+
+/* Small Tablets (Up to 1024px wide) */
+@media (max-width: 1024px) {
+    #darkModeToggle {
+        top: 15px; 
+        left: 15px;
+        width: 150px;
+    }
+
+    .input-field {
+        width: 90%;
+        margin: auto;
+    }
+
+    .button {
+        width: 90%;
+    }
+}
+
+/* Container for the three boxes */
+#debtInputs {
+    display: flex;
+    gap: 30px; /* Space between each box */
+    flex-wrap: wrap; /* Wrap to new lines if needed */
+    margin: 0; /* Space above and below the boxes */
+    margin-right: 10px;
+}
+
+/* Individual Debt Boxes */
+.debt-box {
+    background-color: #fff; /* Default background color */
+    border-radius: 8px; /* Rounded corners */
+    padding: 8px; /* Padding inside the box */
+    flex: 1; /* Boxes grow to fill available space */
+    box-shadow: none; /* Remove box shadow */
+    border: none; /* Remove border */
+}
+
+
+/* Dark Mode Styles */
+.dark-mode .debt-box {
+    background-color: #1e1e1e; /* Dark background for debt boxes */
+    color: #e3f2fd; /* Light text color in dark mode */
+}
+
+.dark-mode #debtInputs {
+    gap: 30px;
+}
+
+.dark-mode .debt-input-group {
+    margin: 0; /* Remove margin for consistency */
+}
+
+/* Wrapper for inputs with signs like '$' */
+.input-with-sign {
+    position: relative;
+    margin-bottom: 25px; /* Space between fields */
+}
+
+/* Styling for input fields inside the sign wrapper */
+.input-with-sign input[type="number"],
+.input-with-sign input[type="text"],
+.input-with-sign input[type="date"] {
+    width: 95%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 3px solid #ccc; /* bottom border */
+    background-color: transparent;
+    transition: all 0.4s ease;
+    outline: none; /* Remove default outline */
+    font-size: 1.1em; 
+    font-family: 'Arial', sans-serif;
+    position: relative;
+    z-index: 1;
+    margin-bottom: -100px; /* Space between fields */
+    padding-left: 20px; /* padding for space for the dollar sign */
+}
+
+.input-with-sign input:focus {
+    border-bottom: 3px solid #0d47a1;
+    background-color: rgba(13, 71, 161, 0.05);
+    box-shadow: 0 8px 16px rgba(13, 71, 161, 0.1);
+    transition: border-color 0.3s ease, background-color 0.4s ease;
+}
+
+.input-with-sign input:focus::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(13, 71, 161, 0.15);
+    z-index: -1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: ripple 0.6s ease forwards;
+}
+
+/* Float label upwards when the input is active or focused */
+.input-with-sign input:focus + label,
+.input-with-sign input:not(:placeholder-shown) + label {
+    top: -20px; /* Float upwards */
+    font-size: 0.9em; /* Shrink font size */
+    color: #0d47a1; /* Active color for label */
+}
+
+/* Styling for the dollar sign, always visible */
+.input-with-sign::before {
+    content: '$';
+    position: absolute;
+    padding-left: 5px;
+    top: 70%; /* Center */
+    transform: translateY(-50%);
+    color: #0d47a1;
+    font-size: 1.2em;
+    font-weight: bold;
+    pointer-events: none; /* Keep dollar sign from blocking clicks */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.input-with-sign input:focus + .input-with-sign::before,
+.input-with-sign input:hover + .input-with-sign::before {
+    color: #0d47a1;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.input-with-sign input:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.client-id-container input[type="number"],
+.client-id-container input[type="text"],
+.client-id-container input[type="date"],
+.client-draft-box input[type="number"],
+.client-draft-box input[type="text"],
+.client-draft-box input[type="date"] {
+    width: 95%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 3px solid #ccc;
+    background-color: transparent;
+    transition: all 0.4s ease;
+    outline: none;
+    font-size: 1.1em;
+    font-family: 'Arial', sans-serif;
+    position: relative;
+    z-index: 1;
+    padding-left: 20px;
+}
+
+.client-id-container input:focus, 
+.client-draft-box input:focus {
+    border-bottom: 3px solid #0d47a1;
+    background-color: rgba(13, 71, 161, 0.05);
+    box-shadow: 0 8px 16px rgba(13, 71, 161, 0.1);
+    transition: border-color 0.3s ease, background-color 0.4s ease;
+}
+
+/* ripple effect */
+.client-id-container input:focus::before, 
+.client-draft-box input:focus::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(13, 71, 161, 0.15);
+    z-index: -1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: ripple 0.6s ease forwards;
+}
+
+@keyframes ripple {
+    to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+}
+
+/* lift and shadow on hover */
+.client-id-container input:hover, 
+.client-draft-box input:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+
+.client-draft-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adjust the gap as needed */
+    flex-wrap: wrap; /* Allows wrapping if necessary */
+}
+
+#extensionFields  {
+    padding-bottom: 1px;
+}
+
+
+.client-draft-box {
+    flex: 1;
+    min-width: 200px; /* Adjust based on the desired minimum width */
+    max-width: calc(50% - 10px); /* Adjust to fit the container and gap */
+    box-sizing: border-box;
+}
+
+.client-draft-box label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.client-draft-box input[type="date"],
+.client-draft-box .input-with-sign input[type="number"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.toggle-container {
+    margin-bottom: 15px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.toggle-label {
+    display: block;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 50px;
+    position: relative;
+    
+}
+
+.toggle input[type="radio"] {
+    display: none;
+}
+
+.toggle label {
+    flex: 1;
+    padding: 10px;
+    border-radius: 50px;
+    background-color: #b9b9b9;
+    color: #444;
+    text-align: center;
+    margin: 0 5px;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
+    font-size: 1em;
+    width: 200px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    margin-bottom: 10px; /* Space between fields */
+}
+
+/* shining effect */
+.toggle label::before {
+    content: '';
+    position: absolute;
+    top: -150%;
+    left: -150%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+}
+
+.toggle label:hover::before {
+    transform: translateX(150%) translateY(150%) rotate(45deg); /* Move across the button */
+    opacity: 1; /* Fade in on hover */
+}
+
+.toggle label::after {
+    content: '';
+    position: absolute;
+    top: -150%;
+    left: -150%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: rotate(45deg);
+    transition: all 2000ms cubic-bezier(0.19, 1, 0.22, 1);
+    opacity: 1;
+}
+
+.toggle label:hover::after {
+    left: 120%;
+    transition: all 3000ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.toggle input[type="radio"]:checked + label {
+    background-color: #0d47a1;
+    color: white;
+    box-shadow: 0 5px 6px 1px rgba(13, 71, 161, 0.6), 0 7px 8px rgba(0, 0, 0, 0.2);
+}
+
+.toggle label:hover {
+    transform: scale(1.05);
+}
+
+.toggle input[type="radio"]:checked + label {
+    animation: scaleUp 0.8s forwards;
+}
+
+@keyframes scaleUp {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.toggle label:focus {
+    outline: 3px dashed #0056b3;
+}
+
+.fee-sections {
+    display: flex;
+    justify-content: space-between; /* Adjust spacing between sections */
+    margin-bottom: 10px; /* Space below the fee sections */
+    margin-top: 10px; /* Space below the fee sections */
+}
+
+.fee-section {
+    flex: 1;
+    margin-right: 15px;
+}
+
+.fee-section:last-child {
+    margin-right: 0;
+}
+
+.title1 {
+    text-align: center;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #0056b3;
+    letter-spacing: 1px;
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.title1 span {
+    margin-top: 0px;
+    font-size: 15px;
+    color: #0056b3;
+    word-spacing: 1px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-template-rows: 27px 0;
+    grid-gap: 20px;
+    align-items: center;
+}
+
+.title1 span:before,
+.title1 span:after {
+    content: " ";
+    display: block;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    height: 5px;
+    background-color: transparent;
+}
+
+
+</style>
+</head>
+<body>
+    <div id="darkModeToggle" onclick="toggleDarkMode()">
+        <div class="label">Dark Mode</div>
+        <div class="toggle-button"></div>
+    </div>
+
+    <div class="wrapper">
+        <div class="container">
+            <h1 class="title1">&ensp;&ensp;&ensp;Payoff & Extension<span>Calculator</span></h1>
+
+            <div class="client-id-container">
+                <label for="clientID">Client ID (optional):</label>
+                <input type="text" id="clientID" placeholder="Enter Client ID (optional)">
+            </div>
+
+            <label class="toggle-label">Which calculation are you looking to make?</label>
+                <div class="toggle-container">
+                    <div class="toggle">
+                        <input type="radio" id="payoff" name="calculationType" value="payoff" checked onchange="toggleFields()">
+                        <label for="payoff">Payoff</label>
+                        <input type="radio" id="extension" name="calculationType" value="extension" onchange="toggleFields()">
+                        <label for="extension">Extension</label>
+                        <div class="slider"></div>
+                    </div>
+                </div>
+
+            <div class="section" id="debtInputs">
+                <div class="debt-input-group debt-box">
+                    <label for="regularDebt">Regular Accounts:</label>
+                    <div class="input-with-sign">
+                        <input type="number" id="regularDebt" placeholder="Regular amount">
+                    </div>
+                </div>
+
+                <div class="debt-input-group debt-box">
+                    <label for="legalDebt">Legal Accounts:</label>
+                    <div class="input-with-sign">
+                        <input type="number" id="legalDebt" placeholder="Legal amount">
+                    </div>
+                </div>
+
+                <div class="debt-input-group debt-box">
+                    <label for="preLegalDebt">Pre-Legal Accounts:</label>
+                    <div class="input-with-sign">
+                        <input type="number" id="preLegalDebt" placeholder="Pre-Legal amount">
+                    </div>
+                </div>
+            </div>
+
+            <div id="payoffFields">
+                <div class="fee-sections">
+                    <div class="fee-section">
+                        <label for="activeSettlement">Active Settlement Amount:</label>
+                        <div class="input-with-sign">
+                            <input type="number" id="activeSettlement" placeholder="Sett Commit">
+                        </div>
+                    </div>
+            
+                    <div class="fee-section">
+                        <label for="epf">Earned Performance Fees (EPF's):</label>
+                        <div class="input-with-sign">
+                            <input type="number" id="epf" placeholder="EPF's amount">
+                        </div>
+                    </div>
+            
+                    <div class="fee-section">
+                        <label for="normalFees">Normal Fees Amount:</label>
+                        <div class="input-with-sign">
+                            <input type="number" id="normalFees" placeholder="Normal fees">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="client-draft-container">
+                    <div class="client-draft-box">
+                        <label for="escrow">Escrow Account Amount:</label>
+                        <div class="input-with-sign">
+                            <input type="number" id="escrow" placeholder="Escrow amount">
+                        </div>
+                    </div>
+                    <div class="client-draft-box">
+                        <label for="nextDraftAmount">Client's Next Draft Amount:</label>
+                        <div class="input-with-sign">
+                            <input type="number" id="nextDraftAmount" placeholder="Draft amount">
+                        </div>
+                    </div>
+                    <div class="client-draft-box">
+                        <label for="nextDraftDate">Client's Next Draft Date:</label>
+                        <div class="input-with-sign client-draft-date-container">
+                            <input type="date" id="nextDraftDate">
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+            </div>
+            <div class="client-draft-container2">
+                <div id="extensionFields" style="display:none;">
+                    <label for="escrowExtension">Escrow Account Amount:</label>
+                    <div class="input-with-sign">
+                        <input type="number" id="escrowExtension" placeholder="Enter escrow account amount">
+                    </div>
+
+                    <label for="clientDraft">Client Draft Amount:</label>
+                    <div class="input-with-sign">
+                        <input type="number" id="clientDraft" placeholder="Enter client draft amount">
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn calculate" onclick="calculateTotal()">
+                    Calculate Total
+                    <i class="calculator-icon fas fa-calculator"></i>
+                </button>
+                <button class="btn reset" onclick="resetFields()">
+                    Reset Inputs
+                    <i class="trash-icon fas fa-trash-alt"></i>
+                </button>
+            </div>
+            
+
+            <div class="result" id="result">
+                <button class="btn copy" onclick="copyResult()">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="history">
+            <h2>Calculation History</h2>
+            <div id="historyList"></div>
+        </div>
+    </div>
+
+    <div class="created-by">
+        Created by Easton Ortiz - Easton.o@usclarity.com - Jeries Mukattash - Jeriesmuk@gmail.com
+    </div>
+
+    <script>
+
+        document.querySelector('.client-draft-date-container').addEventListener('click', function() {
+            document.getElementById('nextDraftDate').showPicker();
+        });
+
+        let history = [];
+
+        // Toggle Dark Mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        function toggleFields() {
+            const calculationType = document.querySelector('input[name="calculationType"]:checked').value;
+            const payoffFields = document.getElementById('payoffFields');
+            const extensionFields = document.getElementById('extensionFields');
+
+            if (calculationType === 'payoff') {
+                payoffFields.style.display = 'block';
+                extensionFields.style.display = 'none';
+            } else {
+                payoffFields.style.display = 'none';
+                extensionFields.style.display = 'block';
+            }
+        }
+
+        function resetFields() {
+            document.getElementById('clientID').value = '';
+            document.getElementById('regularDebt').value = '';
+            document.getElementById('legalDebt').value = '';
+            document.getElementById('preLegalDebt').value = '';
+            document.getElementById('activeSettlement').value = '';
+            document.getElementById('epf').value = '';
+            document.getElementById('normalFees').value = '';
+            document.getElementById('escrow').value = '';
+            document.getElementById('nextDraftAmount').value = '';
+            document.getElementById('nextDraftDate').value = '';
+            document.getElementById('escrowExtension').value = '';
+            document.getElementById('clientDraft').value = '';
+            document.getElementById('result').innerHTML = '<button class="btn copy" onclick="copyResult()"><i class="fas fa-copy"></i></button>';
+
+            const currentCalculationType = document.querySelector('input[name="calculationType"]:checked').value;
+            document.getElementById(currentCalculationType).checked = true;
+            toggleFields();
+        }
+
+        function formatNumber(number) {
+            return number.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function calculateTotal() {
+        const clientID = document.getElementById('clientID').value;
+        const calculationType = document.querySelector('input[name="calculationType"]:checked').value;
+    
+        const regularDebt = parseFloat(document.getElementById('regularDebt').value) || 0;
+        const legalDebt = parseFloat(document.getElementById('legalDebt').value) || 0;
+        const preLegalDebt = parseFloat(document.getElementById('preLegalDebt').value) || 0;
+    
+        const activeSettlement = parseFloat(document.getElementById('activeSettlement').value) || 0;
+        const epf = parseFloat(document.getElementById('epf').value) || 0;
+        const normalFees = parseFloat(document.getElementById('normalFees').value) || 0;
+        const escrow = parseFloat(document.getElementById('escrow').value) || 0;
+        const nextDraftAmount = parseFloat(document.getElementById('nextDraftAmount').value) || 0;
+        const clientDraftAmount = parseFloat(document.getElementById('clientDraft').value) || 0;
+        const nextDraftInput = document.getElementById('nextDraftDate').value;
+        const escrowExtension = parseFloat(document.getElementById('escrowExtension').value) || 0;
+        let formattedDraftDate = '';
+
+        if (nextDraftInput) {
+            const nextDraftDate = new Date(nextDraftInput);
+            formattedDraftDate = nextDraftDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: '2-digit'
+            });
+        }
+
+        const hasDebtInputs = regularDebt > 0 || legalDebt > 0 || preLegalDebt > 0;
+
+    let resultHTML;
+
+    if (calculationType === 'payoff') {
+        if (hasDebtInputs) {
+            const regularSum = regularDebt * 0.85;
+            const legalAndPreLegalSum = (legalDebt + preLegalDebt) * 0.95;
+            const unsettledAccountsSum = regularSum + legalAndPreLegalSum;
+            const fundsNeededToSettleUnsettledAccounts = unsettledAccountsSum - escrow;
+
+            const entireProgramSum = unsettledAccountsSum + activeSettlement + epf + normalFees - escrow;
+            const entireProgramAfterDraft = entireProgramSum - nextDraftAmount;
+
+            resultHTML = 
+                `<h3>PAYOFF REQUEST COMPLETED</h3>
+                <p><strong>Payoff (Unsettled Enrolled Accounts):</strong> To settle the remaining enrolled debts, the client would need to inject a separate Estimated <strong>[$${formatNumber(fundsNeededToSettleUnsettledAccounts)}]</strong>.</p>
+                <p>This amount is only an <strong>estimate</strong> and may be greater or less depending on each creditor's response to offers made.</p>
+                <p><strong>Payoff (Entire Program):</strong> The client will need to provide <strong>[$${formatNumber(entireProgramSum)}]</strong>. This calculation is valid until the end of [Month]. However, if the draft scheduled for <b>${formattedDraftDate}</b> is processed, the required amount will be reduced to <strong>[$${formatNumber(entireProgramAfterDraft)}]</strong>. This amount will remain valid until the end of [Month].</p>`;
+        } else {
+            const settlementFeesSum = activeSettlement + epf + normalFees;
+            const totalAfterEscrow = settlementFeesSum - escrow;
+            const totalAfterDraft = totalAfterEscrow - nextDraftAmount;
+            resultHTML = 
+                `<h3>PAYOFF REQUEST COMPLETED</h3>
+                <p><strong>Payoff (Active Settlements / Entire Program):</strong> The client will need to provide <strong>[$${formatNumber(totalAfterEscrow)}]</strong>. This calculation is valid until the end of [Month]. However, if the draft scheduled for <b>${formattedDraftDate}</b> is processed, the required amount will be reduced to <strong>[$${formatNumber(totalAfterDraft)}]</strong>. This amount will remain valid until the end of [Month].</p>`;
+        }
+        } else if (calculationType === 'extension') {
+            const totalDebt = regularDebt * 0.85 + (legalDebt + preLegalDebt) * 0.95;
+            const totalAfterEscrow = totalDebt - escrowExtension;
+            
+        if (clientDraftAmount > 0) {
+            const monthsNeeded = totalAfterEscrow / clientDraftAmount;
+            resultHTML = 
+                `<h3>EXTENSION REQUEST COMPLETED</h3>
+                <p>The client needs to extend the program by approximately <strong>${Math.ceil(monthsNeeded)}</strong> months at <strong>[$${formatNumber(clientDraftAmount)}]/month</strong> to settle the remaining enrolled debt.</p>`;
+        } else {
+            resultHTML = "<p>Please provide a valid draft amount for the extension calculation.</p>";
+        }
+    }
+            document.getElementById('result').innerHTML = resultHTML + '<button class="btn copy" onclick="copyResult()"><i class="fas fa-copy"></i></button>';
+
+            if (clientID) {
+                history.push({ clientID, result: resultHTML });
+                updateHistoryView();
+            }
+        }
+    function copyResult() {
+    const resultText = document.getElementById('result').innerText;
+    const copyButton = document.querySelector('.copy-button');
+    
+    navigator.clipboard.writeText(resultText).then(() => {
+        // Create feedback message
+        const feedback = document.createElement('div');
+        feedback.innerText = 'Copied to clipboard!';
+        feedback.style.position = 'fixed';
+        feedback.style.bottom = '20px';
+        feedback.style.left = '20px';
+        feedback.style.backgroundColor = '#28a745';
+        feedback.style.color = '#fff';
+        feedback.style.padding = '10px 15px';
+        feedback.style.borderRadius = '5px';
+        feedback.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+        feedback.style.zIndex = '1000';
+        feedback.style.opacity = '0';
+        feedback.style.transition = 'opacity 0.5s ease';
+        
+        document.body.appendChild(feedback);
+        
+        // Trigger the fade-in
+        setTimeout(() => {
+            feedback.style.opacity = '1';
+        }, 10);
+        
+        // Fade out and remove after some time
+        setTimeout(() => {
+            feedback.style.opacity = '0';
+            setTimeout(() => {
+                document.body.removeChild(feedback);
+            }, 500);
+        }, 2000);
+        
+        const originalColor = copyButton.style.backgroundColor;
+        copyButton.style.backgroundColor = '#28a745';
+        setTimeout(() => {
+            copyButton.style.backgroundColor = originalColor;
+        }, 1000);
+    });
+}
+        function updateHistoryView() {
+            const historyList = document.getElementById('historyList');
+            historyList.innerHTML = '';
+            history.forEach((item, index) => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                historyItem.textContent = `Client ID: ${item.clientID}`;
+                historyItem.onclick = () => showHistoryDetail(index);
+                historyList.appendChild(historyItem);
+            });
+        }
+
+        function showHistoryDetail(index) {
+            document.getElementById('result').innerHTML = history[index].result + '<button class="btn copy" onclick="copyResult()"><i class="fas fa-copy"></i></button>';
+        }
+
+    window.onload = toggleFields;
+
+    document.getElementById('result').innerHTML = resultHTML;
+
+    // Store Calculation in History if Client ID is provided
+    if (clientID) {
+        history.push({ clientID, result: resultHTML });
+        updateHistoryView();
+    }
+
+    saveState();
+        function updateHistoryView() {
+            const historyList = document.getElementById('historyList');
+            historyList.innerHTML = '';
+            history.forEach((item, index) => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                historyItem.textContent = `Client ID: ${item.clientID}`;
+                historyItem.onclick = () => showHistoryDetail(index);
+                historyList.appendChild(historyItem);
+            });
+        }
+
+        function showHistoryDetail(index) {
+            document.getElementById('result').innerHTML = history[index].result;
+        }
+    </script>
+</body>
+</html>
